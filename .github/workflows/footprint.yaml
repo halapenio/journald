@@ -1,0 +1,31 @@
+name: Footprint
+on:
+  schedule:
+    - cron: '0 9-17 * * *'
+  push:
+
+jobs:
+  timeline:
+    name: add new date
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      
+      - name: save the date
+        run: |
+          date >> timeline.log
+
+      - name: setup git config
+        run: |
+          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
+      - name: commit
+        run: |
+          # Stage the file, commit and push
+          git add .
+          git commit -m "every day @ 9-17"
+          git push origin main
