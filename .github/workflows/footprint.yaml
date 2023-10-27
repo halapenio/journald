@@ -2,7 +2,6 @@ name: Footprint
 on:
   schedule:
     - cron: '0 17 * * *'
-  push:
 
 jobs:
   timeline:
